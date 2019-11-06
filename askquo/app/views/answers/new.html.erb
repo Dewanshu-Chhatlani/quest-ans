@@ -1,0 +1,19 @@
+<div style="margin-left: 60px;">
+    <p>
+    <h2><strong>Q.</strong>
+    <%= @question.question %></h2>
+    </p>
+    <h3>Add an answer:</h3>
+    <%= form_with(model: [ @question, @question.answers.build ], local: true) do |form| %>
+    <p>
+        <%= form.text_area :answer, :style => "width:430px;height:80px;", :required => "required" %>
+    </p>
+    <p>
+        <%= form.label :answered_by %><br>
+        <%= form.text_field :answered_by, value: current_user.email, readonly: true %>
+    </p>
+    <p>
+        <%= form.submit %>
+    </p>
+    <% end %>
+</div>

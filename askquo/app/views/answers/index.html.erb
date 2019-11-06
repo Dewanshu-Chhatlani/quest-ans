@@ -1,0 +1,12 @@
+<div style="margin-left: 60px;">
+    <p>
+    <h2><strong>Q.</strong>
+    <%= @question.question %></h2>
+    </p><br>
+    <% @answers.each do |answer| %>
+        <div style="border: 2px solid grey;border-radius:5px;padding-bottom:10px;width:600px">
+            <h3 style="padding-left:15px;"><%= answer.answer %></h3>
+            <strong style="padding-left:15px;">Answered by:</strong>
+            <%= answer.answered_by %>
+        </div><br>
+    <% end %>

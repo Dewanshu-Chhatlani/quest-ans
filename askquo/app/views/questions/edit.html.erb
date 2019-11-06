@@ -1,0 +1,14 @@
+<%= render "devise/shared/error_messages", resource:  @question %>
+<div style="margin-left: 60px;">
+    <h2>Edit Question</h2>
+    <br>
+    <%= form_with(model: @question, local: true) do |form| %>
+    <p>
+        <%= form.label :enter_your_question %><br>
+        <%= form.text_area :question, :required => 'required' %>
+    </p>
+    <p>
+        <%= form.submit %>
+    </p>
+    <% end %>
+</div>

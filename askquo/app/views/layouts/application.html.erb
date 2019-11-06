@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Askquo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+     .navbar-custom{
+      background-color: red;
+    }
+    .navbar-custom .navbar-brand, 
+        .navbar-custom .navbar-text { 
+            color: white; 
+        }
+        .nav.navbar-nav.navbar-right li a:hover {
+      color: black;
+    }
+    .dropdown-menu a{
+      color: black
+    }
+    .navbar-white a{
+      color: white
+    }
+    .navbar-white a:hover{
+      color: black
+    }
+    #navbarDropdown{
+      color:white
+    }
+    #navbarDropdown:hover{
+      color:black
+    }
+  </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            Askquo
+          </div>
+          <ul class="nav navbar-nav list">
+              <li class="navbar-white"><%= link_to 'Home', welcome_index_path, :style => 'text-decoration:none;' %></li>
+            <% if current_user %>
+              <li class="navbar-white"><%= link_to 'Ask a Question', new_question_path, :style => 'text-decoration:none;' %></li>
+              <li class="navbar-white"><%= link_to 'View all Questions', questions_path, :style => 'text-decoration:none;' %></li>
+              <li class="navbar-white"><%= link_to 'My Questions', questions_myquestions_path, :style => 'text-decoration:none;' %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-user"></span>&nbsp &nbsp<%= current_user.email %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width:245px">
+              <a class="dropdown-item"><%= link_to 'Change Password', edit_user_registration_path, :style => 'text-decoration:none;' %></a><br>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item"><%= link_to 'Log Out', destroy_user_session_path , method: :delete, :style => 'text-decoration:none;' %></a>
+            </div>
+          </li>
+          </ul>
+          <% else %>
+              <li class="navbar-white"><%= link_to 'Sign Up', new_user_registration_path, :style => 'text-decoration:none;' %></li>
+              <li class="navbar-white"><%= link_to 'Log In', new_user_session_path, :style => 'text-decoration:none;' %></li>
+          </ul>
+          <% end %>
+        </div>
+    </nav>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
