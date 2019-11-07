@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
   resources :questions do
-      resources :answers
+      resources :answers do
+        member do
+          put "upvote", to: "answers#upvote"
+          put "downvote", to: "answers#downvote"
+        end
+      end
   end
   root 'welcome#index'
 end

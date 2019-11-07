@@ -7,6 +7,10 @@
         <div style="border: 2px solid grey;border-radius:5px;padding-bottom:10px;width:600px">
             <h3 style="padding-left:15px;"><%= answer.answer %></h3>
             <strong style="padding-left:15px;">Answered by:</strong>
-            <%= answer.answered_by %>
+            <%= answer.answered_by %><br><br>
+            <%= link_to 'Upvote', upvote_question_answer_path(answer.question_id, answer.id), method: :put, :style => "padding-left:15px;" %>
+            <%= answer.get_upvotes.size %>
+            <%= link_to 'Downvote', downvote_question_answer_path(answer.question_id, answer.id), method: :put %>
+            <%= answer.get_downvotes.size %>
         </div><br>
     <% end %>
